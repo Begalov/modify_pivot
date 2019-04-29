@@ -15,9 +15,9 @@ def main(context):
             objName = objAxis.name
             objName = objName.replace("BSAxis_","")
             bpy.ops.object.select_all(action='DESELECT')
-            bpy.context.scene.objects.active = None
-            bpy.data.objects[objName].select = True
-            bpy.context.scene.objects.active = bpy.data.objects[objName]
+            bpy.context.view_layer.objects.active = None
+            bpy.data.objects[objName].select_set(state=True)
+            bpy.context.view_layer.objects.active = bpy.data.objects[objName]
             objTarget= bpy.context.active_object
 
             objTarget.location = objTarget.location + objTarget.delta_location
@@ -40,7 +40,7 @@ def main(context):
             newRot = objAxis.rotation_euler
             newRotMX = newRot.to_matrix()
             newRotInvMX = newRotMX.inverted()
-            newRotDupMX = newRotMX * newRotMX
+            newRotDupMX = newRotMX @ newRotMX
             newRotDupInvMX = newRotDupMX.inverted()
 
             newRotMXEu = newRotMX.to_euler()
@@ -50,8 +50,8 @@ def main(context):
             bpy.ops.object.transform_apply(location=False, rotation=True, scale=False)
             
             #previousLoc = objTarget.location + objTarget.delta_location
-            currentCursorLocation = bpy.context.scene.cursor_location
-            bpy.context.scene.cursor_location = objAxis.location
+            currentCursorLocation = bpy.context.scene.cursor.location
+            bpy.context.scene.cursor.location = objAxis.location
             objTarget.location = objTarget.location + objTarget.delta_location
             objTarget.delta_location = (0.0, 0.0, 0.0)
             bpy.ops.object.origin_set(type='ORIGIN_CURSOR')
@@ -64,15 +64,15 @@ def main(context):
             objTarget.delta_location = objTarget.location
             objTarget.location = (0.0,0.0,0.0)
             bpy.ops.object.select_all(action='DESELECT')
-            objAxis.select = True
+            objAxis.select_set(state=True)
             bpy.ops.object.delete()
-            objTarget.select = True
+            objTarget.select_set(state=True)
 
-    """
-    With this operator we commit the object pivot to the axis pivot and we delete the axis from the scene 
-    """
-    
-class BSModifyPivotCommit(bpy.types.Operator):
+"""
+With this operator we commit the object pivot to the axis pivot and we delete the axis from the scene 
+"""
+class BSModifyPivot_OT_Commit(bpy.types.Operator):
+    """Commit modified pivot"""
     bl_idname = "object.bsmodify_pivot_commit"
     bl_label = "BS Modify Object Pivot Commit"
     
@@ -85,7 +85,7 @@ class BSModifyPivotCommit(bpy.types.Operator):
         return {"FINISHED"}
 
 def register():
-    bpy.utils.register_class(BSModifyPivotCommit)
+    bpy.utils.register_class(BSModifyPivot_OT_Commit)
     
 def unregister():
-    bpy.utils.unregister_class(BSModifyPivotCommit)
+    bpy.utils.unregister_class(BSModifyPivot_OT_Commit)

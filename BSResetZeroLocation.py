@@ -21,12 +21,11 @@ def main(context):
             obj.delta_location.z = 0.0
             bpy.ops.object.transform_apply(location=True, rotation=False, scale=False)
 
-
-    """
-    With this operator we reset pivot orientation and avoid disparities produced by delta values 
-    """
-    
-class BSResetZeroLocation(bpy.types.Operator):
+"""
+With this operator we reset pivot orientation and avoid disparities produced by delta values 
+"""
+class BSModifyPivot_OT_ResetZeroLocation(bpy.types.Operator):
+    """Reset pivot location transform"""
     bl_idname = "object.bsmodify_reset_zero_location"
     bl_label = "BS Modify Reset Zero Location"
     
@@ -39,7 +38,7 @@ class BSResetZeroLocation(bpy.types.Operator):
         return {"FINISHED"}
 
 def register():
-    bpy.utils.register_class(BSResetZeroLocation)
+    bpy.utils.register_class(BSModifyPivot_OT_ResetZeroLocation)
     
 def unregister():
-    bpy.utils.unregister_class(BSResetZeroLocation)
+    bpy.utils.unregister_class(BSModifyPivot_OT_ResetZeroLocation)

@@ -1,14 +1,21 @@
 bl_info = {
     'name': 'BS Modify Pivot',
-    "author": "Bone-Studio - Juan Gea",
-    'version': (1, 0, 3),
-    'blender': (2, 79, 0),
+    "author": "Bone-Studio - Juan Gea, RUben Begalov@gmail.com",
+    'version': (1, 0, 4),
+    'blender': (2, 80, 0),
     'location': 'Tools panel.',
     'description': 'Tool to modify pivot location and orientation.',
     'category': 'Object',
 }
 
-modulesNames = ['BSModifyPivotPanel', 'BSModifyPivotCreate', 'BSModifyPivotCommit', 'BSResetPivotOrientation', 'BSResetZeroLocation', 'BSDeltaToTransform']
+modulesNames = [
+    'BSModifyPivotPanel',
+    'BSModifyPivotCreate',
+    'BSModifyPivotCommit',
+    'BSResetPivotOrientation',
+    'BSResetZeroLocation',
+    'BSDeltaToTransform'
+    ]
 
 import sys
 import importlib

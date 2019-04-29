@@ -29,12 +29,11 @@ def main(context):
             obj.delta_location.z = 0.0
             ##bpy.ops.object.transform_apply(location=True, rotation=False, scale=False)
 
-
-    """
-    With this operator we reset pivot orientation and avoid disparities produced by delta values 
-    """
-    
-class BSDeltaToTransform(bpy.types.Operator):
+"""
+With this operator we reset pivot orientation and avoid disparities produced by delta values 
+"""
+class BSModifyPivot_OT_deltaToTransform(bpy.types.Operator):
+    """Transfers delta transform"""
     bl_idname = "object.bsdelta_to_transform"
     bl_label = "BS Delta to transform"
     
@@ -47,7 +46,7 @@ class BSDeltaToTransform(bpy.types.Operator):
         return {"FINISHED"}
 
 def register():
-    bpy.utils.register_class(BSDeltaToTransform)
+    bpy.utils.register_class(BSModifyPivot_OT_deltaToTransform)
     
 def unregister():
-    bpy.utils.unregister_class(BSDeltaToTransform)
+    bpy.utils.unregister_class(BSModifyPivot_OT_deltaToTransform)

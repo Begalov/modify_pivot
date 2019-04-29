@@ -16,11 +16,11 @@ def main(context):
             obj.delta_rotation_euler.y = 0.0
             obj.delta_rotation_euler.z = 0.0
 
-    """
-    With this operator we reset pivot orientation and avoid disparities produced by delta values 
-    """
-    
-class BSResetPivotOrientation(bpy.types.Operator):
+"""
+With this operator we reset pivot orientation and avoid disparities produced by delta values 
+"""
+class BSModifyPivot_OT_ResetPivotOrientation(bpy.types.Operator):
+    """Reset pivot rotation transform"""
     bl_idname = "object.bsmodify_pivot_reset_orientation"
     bl_label = "BS Modify Reset Pivot Orientation"
     
@@ -33,7 +33,7 @@ class BSResetPivotOrientation(bpy.types.Operator):
         return {"FINISHED"}
 
 def register():
-    bpy.utils.register_class(BSResetPivotOrientation)
+    bpy.utils.register_class(BSModifyPivot_OT_ResetPivotOrientation)
     
 def unregister():
-    bpy.utils.unregister_class(BSResetPivotOrientation)
+    bpy.utils.unregister_class(BSModifyPivot_OT_ResetPivotOrientation)
