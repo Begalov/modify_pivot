@@ -2,7 +2,7 @@ import bpy
 from bpy.types import Menu, Panel, UIList
 
 
-class BSModifyPivot_PT_Panel(bpy.types.Panel):
+class BS_PT_ModifyPivotPanel(bpy.types.Panel):
     bl_category = "Tools"
     bl_context = "objectmode"
     bl_label = "Modify Pivot"
@@ -19,8 +19,8 @@ class BSModifyPivot_PT_Panel(bpy.types.Panel):
         layout.operator("object.bsdelta_to_transform", text="Delta To Transform", icon="FILE_REFRESH")
 
 def register():
-    bpy.utils.register_class(BSModifyPivot_PT_Panel)
+    bpy.utils.register_class(BS_PT_ModifyPivotPanel)
 
 
 def unregister():
-    bpy.utils.unregister_class(BSModifyPivot_PT_Panel)
+    bpy.utils.unregister_class(BS_PT_ModifyPivotPanel)

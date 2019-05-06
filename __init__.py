@@ -1,7 +1,7 @@
 bl_info = {
     'name': 'BS Modify Pivot',
     "author": "Bone-Studio - Juan Gea, RUben Begalov@gmail.com",
-    'version': (1, 0, 4),
+    'version': (1, 0, 5),
     'blender': (2, 80, 0),
     'location': 'Tools panel.',
     'description': 'Tool to modify pivot location and orientation.',
